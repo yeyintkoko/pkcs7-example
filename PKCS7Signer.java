@@ -41,6 +41,7 @@ public class PKCS7Signer {
     public PKCS7Signer() {
     }
 
+    @SuppressWarnings("unchecked")
     public KeyStore loadKeyStore() throws Exception {
         KeyStore keystore = KeyStore.getInstance("JKS");
         InputStream is = new FileInputStream(PATH_TO_KEYSTORE);
@@ -48,6 +49,7 @@ public class PKCS7Signer {
         return keystore;
     }
 
+    @SuppressWarnings("unchecked")
     public CMSSignedDataGenerator setUpProvider(final KeyStore keystore) throws Exception {
 
         Security.addProvider(new BouncyCastleProvider());
@@ -78,6 +80,7 @@ public class PKCS7Signer {
 
     }
 
+    @SuppressWarnings("unchecked")
     public byte[] signPkcs7(final byte[] content, final CMSSignedDataGenerator generator) throws Exception {
 
         CMSTypedData cmsdata = new CMSProcessableByteArray(content);
@@ -85,6 +88,7 @@ public class PKCS7Signer {
         return signeddata.getEncoded();
     }
 
+    @SuppressWarnings("unchecked")
     public byte[] unsignPkcs7(String envelopedData) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
 
@@ -110,6 +114,7 @@ public class PKCS7Signer {
         return data;
     }
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
       PKCS7Signer signer = new PKCS7Signer();
       KeyStore keyStore = signer.loadKeyStore();
