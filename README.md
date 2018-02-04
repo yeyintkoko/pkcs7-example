@@ -35,3 +35,10 @@ To generate a pem file: (not use in this example)
 ```
   sudo openssl dhparam -out dhparam.pem 2048
 ```
+
+
+-------------------------------
+
+#### For C#
+
+https://blogs.msdn.microsoft.com/shawnfa/2006/02/27/enveloped-pkcs-7-signatures/

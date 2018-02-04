@@ -1,0 +1,42 @@
+
+.jks is a keystore, which is a Java thing
+------------------------------
+
+use keytool binary from Java.
+
+
+
+export the .crt:
+
+keytool -export -alias mydomain -file mydomain.der -keystore mycert.jks
+
+---------------------------------------------
+
+export .p7b file from .crt (above)
+
+openssl crl2pkcs7 -nocrl -certfile certificate.crt -out certificate.p7b
+
+-------------------------------
+
+convert the cert to PEM:
+
+openssl x509 -inform der -in mydomain.der -out certificate.pem
+
+--------------------------------
+
+export the key:
+
+keytool -importkeystore -srckeystore mycert.jks -destkeystore keystore.p12 -deststoretype PKCS12
+
+---------------------------------
+
+concert PKCS12 key to unencrypted PEM:
+
+openssl pkcs12 -in keystore.p12  -nodes -nocerts -out mydomain.key
+
+-------------- or ----------------
+
+openssl x509 -outform der -in your-cert.pem -out your-cert.crt
+
+
+------------------------------------------------------
